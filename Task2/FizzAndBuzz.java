@@ -5,8 +5,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FizzAndBuzz extends Thread implements ProcessorOfNumbers {
     private int number;
-    private AtomicBoolean processed = new AtomicBoolean(true);
-    private ProcessorOfNumbers processor;
+    private final AtomicBoolean processed = new AtomicBoolean(true);
+    private final ProcessorOfNumbers processor;
     public FizzAndBuzz(ProcessorOfNumbers processor){
         this.processor=processor;
     }
@@ -20,11 +20,11 @@ public class FizzAndBuzz extends Thread implements ProcessorOfNumbers {
     @Override
     public void run() {
         while (true) {
-            /*try {
-                TimeUnit.MILLISECONDS.sleep(1);
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }*/
+                e.printStackTrace();
+            }
             if (processed.get()) {
                 continue;
             }

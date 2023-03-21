@@ -5,31 +5,31 @@ import java.util.List;
 
 public class FizzAndBuzzTests {
     public static void main(String[] args) {
-        FizzAndBuzz fizz = new FizzAndBuzz((n) -> {
+        FizzAndBuzz A = new FizzAndBuzz((n) -> {
             if (n % 3 == 0) {
                 System.out.println("Fizz");
             }
         });
-        FizzAndBuzz buzz = new FizzAndBuzz((n) -> {
+        FizzAndBuzz B = new FizzAndBuzz((n) -> {
             if (n % 5 == 0) {
                 System.out.println("Buzz");
             }
         });
-        FizzAndBuzz fizzAndBuzz = new FizzAndBuzz((n) -> {
+        FizzAndBuzz C = new FizzAndBuzz((n) -> {
             if (n % 15 == 0) {
                 System.out.println("FizzBuzz");
             }
         });
-        FizzAndBuzz num = new FizzAndBuzz((n) -> {
+        FizzAndBuzz D = new FizzAndBuzz((n) -> {
             if ((n % 3 != 0) && (n % 5 != 0)) {
                 System.out.println(n);
             }
         });
         List<FizzAndBuzz> threads = new ArrayList<>();
-        threads.add(fizzAndBuzz);
-        threads.add(fizz);
-        threads.add(buzz);
-        threads.add(num);
+        threads.add(A);
+        threads.add(B);
+        threads.add(C);
+        threads.add(D);
         for (FizzAndBuzz thread : threads) {
             thread.start();
         }
@@ -37,9 +37,8 @@ public class FizzAndBuzzTests {
             for (FizzAndBuzz thread : threads) {
                 thread.process(i);
             }
-        }
-        int count = 0;
         while (true) {
+            int count = 0;
             for (FizzAndBuzz thread : threads) {
                 if (thread.isProcessed()) {
                     count++;
@@ -48,6 +47,8 @@ public class FizzAndBuzzTests {
             if (count == threads.size()) {
                 break;
             }
+        }
+
         }
     }
 }
